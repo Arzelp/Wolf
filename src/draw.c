@@ -5,14 +5,14 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Mon Dec 14 19:29:31 2015 Paskal Arzel
-** Last update Sun Dec 27 10:23:27 2015 Paskal Arzel
+** Last update Mon Jan  4 18:19:02 2016 Paskal Arzel
 */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
-#include <lapin.h>
+#include "lapin.h"
 #include "my.h"
 
 t_color *makecolor(t_list *list, int height, t_color *color)

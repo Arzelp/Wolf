@@ -5,13 +5,13 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Sun Jan  3 16:38:08 2016 Paskal Arzel
-** Last update Sun Jan  3 20:17:56 2016 Paskal Arzel
+** Last update Mon Jan  4 18:18:58 2016 Paskal Arzel
 */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <lapin.h>
+#include "lapin.h"
 #include "my.h"
 
 char	**creatmap(t_bunny_ini *in, int width, int height)

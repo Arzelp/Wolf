@@ -5,14 +5,14 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Tue Dec 15 22:34:28 2015 Paskal Arzel
-** Last update Sun Jan  3 21:18:40 2016 Paskal Arzel
+** Last update Mon Jan  4 18:18:42 2016 Paskal Arzel
 */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
-#include <lapin.h>
+#include "lapin.h"
 #include "my.h"
 
 int	checkcreate(t_list *list, t_bunny_keysym keysym,

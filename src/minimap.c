@@ -5,14 +5,14 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Fri Dec 18 19:45:34 2015 Paskal Arzel
-** Last update Sun Jan  3 16:18:03 2016 Paskal Arzel
+** Last update Mon Jan  4 18:19:13 2016 Paskal Arzel
 */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
-#include <lapin.h>
+#include "lapin.h"
 #include "my.h"
 
 int	minisquaretp(t_bunny_pixelarray *pix, t_bunny_position *pos)

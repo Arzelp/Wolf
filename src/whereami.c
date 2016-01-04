@@ -5,13 +5,13 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Fri Dec 18 22:12:53 2015 Paskal Arzel
-** Last update Sun Jan  3 16:21:24 2016 Paskal Arzel
+** Last update Mon Jan  4 18:19:40 2016 Paskal Arzel
 */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <lapin.h>
+#include "lapin.h"
 #include "my.h"
 
 int	my_square(t_bunny_pixelarray *pix, t_bunny_position *pos)

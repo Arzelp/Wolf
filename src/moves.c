@@ -5,14 +5,14 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Fri Dec 18 01:06:49 2015 Paskal Arzel
-** Last update Mon Dec 28 16:32:05 2015 Paskal Arzel
+** Last update Mon Jan  4 18:19:24 2016 Paskal Arzel
 */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
-#include <lapin.h>
+#include "lapin.h"
 #include "my.h"
 
 int	goup(t_list *list, int posx, int posy, float radangle)
