@@ -5,11 +5,10 @@
 ** Login   <arzel_p@epitech.net>
 **
 ** Started on  Sun Nov  1 14:38:04 2015 Paskal Arzel
-** Last update Wed Dec 16 14:41:40 2015 Paskal Arzel
+** Last update Mon Jan  4 18:09:28 2016 Paskal Arzel
 */
 
 #include "lapin.h"
-#include "my.h"
 
 void    tekpixel(t_bunny_pixelarray *pix,
 		 t_bunny_position *pos,
