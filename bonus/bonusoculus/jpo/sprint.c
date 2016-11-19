@@ -5,19 +5,19 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Fri Nov 18 17:58:17 2016 Paskal Arzel
-** Last update Fri Nov 18 17:59:38 2016 Paskal Arzel
+** Last update Sat Nov 19 14:05:57 2016 Nathan Tual
 */
 
 #include "my.h"
 
+/*
+  Touches utilisées : list->keys[BLS_{nom de la touche}],
+  list->sprint : Energie disponible ( / 100)
+  list->sprinting : true/false (le joueur court-il ?)
+*/
+
 void	sprint(t_list	*list)
 {
-  if (list->keys[BKS_LSHIFT])
-    {
-      list->sprint -= 2;
-      list->sprinting = true;
-    }
-  else
-    list->sprint += 1;
-  return;
+  // Écrit ton code en dessous de cette ligne
+  
 }
