@@ -5,7 +5,7 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Tue Dec 15 22:34:28 2015 Paskal Arzel
-** Last update Sun Jan  3 21:19:24 2016 Paskal Arzel
+** Last update Fri Nov 18 18:01:32 2016 Paskal Arzel
 */
 
 #include <stdio.h>
@@ -15,14 +15,13 @@
 #include <lapin.h>
 #include "my.h"
 
-int	checkcreate(t_list *list, t_bunny_keysym keysym,
-		    t_bunny_event_state state, float radangle)
+int	checkcreate(t_list *list, float radangle)
 {
   if (list->posx >= list->height || list->posy >= list->width)
     return (1);
   if (list->posx <= 0 || list->posy <= 0)
     return (1);
-  if (keysym == BKS_RCONTROL && state == GO_DOWN && list->posx > 0)
+  if (list->keys[BKS_RCONTROL] && list->posx > 0)
     {
       if (sin(radangle) > cos(radangle) && sin(radangle) > -cos(radangle))
 	(list->map)[(int)(list->posx)][(int)(list->posy + 1)] = 1;
@@ -36,14 +35,13 @@ int	checkcreate(t_list *list, t_bunny_keysym keysym,
   return (0);
 }
 
-int	checkdestruct(t_list *list, t_bunny_keysym keysym,
-		      t_bunny_event_state state, float radangle)
+int	checkdestruct(t_list *list, float radangle)
 {
   if (list->posx >= list->height || list->posy >= list->width)
     return (1);
   if (list->posx <= 0 || list->posy <= 0)
     return (1);
-  if (keysym == BKS_SPACE && state == GO_DOWN && list->posx > 0)
+  if (list->keys[BKS_SPACE] && list->posx > 0)
     {
       if (sin(radangle) > cos(radangle) && sin(radangle) > -cos(radangle))
 	(list->map)[(int)(list->posx)][(int)(list->posy + 1)] = 0;
@@ -77,45 +75,52 @@ int	checktp(t_list *list)
   return (0);
 }
 
-int	updown(t_list *list, t_bunny_keysym keysym, t_bunny_event_state state,
-	       float radangle)
+int	updown(t_list *list, float radangle)
 {
   int	posx;
   int	posy;
 
   posx = 0;
   posy = 0;
-  if (keysym == BKS_UP && state == GO_DOWN)
+  if (list->keys[BKS_UP])
     goup(list, posx, posy, radangle);
-  else if (keysym == BKS_DOWN && state == GO_DOWN)
+  if (list->keys[BKS_DOWN])
     godown(list, posx, posy, radangle);
-  else if (keysym == BKS_RIGHT && state == GO_DOWN)
+  if (list->keys[BKS_RIGHT])
     goright(list, posx, posy, radangle);
-  else if (keysym == BKS_LEFT && state == GO_DOWN)
+  if (list->keys[BKS_LEFT])
     goleft(list, posx, posy, radangle);
   checktp(list);
-  checkdestruct(list, keysym, state, radangle);
-  checkcreate(list, keysym, state, radangle);
+  checkdestruct(list, radangle);
+  checkcreate(list, radangle);
   checkview(list);
   return (0);
 }
 
-t_bunny_response	mainresp(t_bunny_event_state state,
-				 t_bunny_keysym keysym,
-				 void *_data)
+void	controls(t_list	*list)
 {
   float	radangle;
-  t_list	*list;
 
-  list = _data;
   radangle = list->angle * M_PI / 180;
-  if (keysym == BKS_ESCAPE && state == GO_DOWN)
-    return (EXIT_ON_SUCCESS);
-  if (keysym == BKS_E && state == GO_DOWN)
+  if (rand() % 2 == 0)
+    list->angle += (float)(((rand() % 10000) * (list->coke - 1)) / 10000.0);
+  if (rand() % 2 == 1)
+    list->angle -= (float)(((rand() % 10000) * (list->coke - 1)) / 10000.0);
+  sprint(list);
+  list->coke *= (list->sprinting == true) ? 2.0 : 1.0;
+  if (list->keys[BKS_ESCAPE])
+    return;
+  if (list->keys[BKS_E])
     list->angle -= 2.4;
-  else if (keysym == BKS_A && state == GO_DOWN)
+  if (list->keys[BKS_A])
     list->angle += 2.4;
-  else
-    updown(list, keysym, state, radangle);
-  return (GO_ON);
+  if (list->keys[BKS_N] && list->cdnight <= 0)
+    {
+      list->night = (list->night == true) ? false : true;
+      list->cdnight = 5;
+    }
+  list->cdnight = (list->cdnight <= 0) ? list->cdnight : list->cdnight - 1;
+  updown(list, radangle);
+  list->coke /= (list->sprinting == true) ? 2.0 : 1.0;
+  return;
 }

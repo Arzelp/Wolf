@@ -5,7 +5,7 @@
 ## Login   <arzel_p@epitech.net>
 ##
 ## Started on  Fri Oct  9 10:24:46 2015 Paskal Arzel
-## Last update Sun Jan  3 20:40:30 2016 Paskal Arzel
+## Last update Fri Nov 18 14:36:03 2016 Paskal Arzel
 ##
 
 NAME		=	wolf3d
@@ -19,7 +19,7 @@ LIB			=	-L/home/arzel_p/.froot/lib/ -llapin \
 				-ldl -lstdc++ \
 				-lmy -L ./lib/my
 
-FLAG		=	-W -Wall -ansi -pedantic -I/home/arzel_p/.froot/include/
+FLAG		=	-I./include/ -W -Wall -ansi -pedantic -I/home/arzel_p/.froot/include
 SRC			=	src/wolf3d.c \
 				src/my_fill.c \
 				src/my_set_pixel.c \
@@ -27,14 +27,15 @@ SRC			=	src/wolf3d.c \
 				src/getscope.c \
 				src/creatlist.c \
 				src/control.c \
-				src/minisquare.c \
 				src/moves.c \
 				src/minimap.c \
 				src/vecnorm.c \
 				src/go.c \
 				src/colonmaker.c \
 				src/draw.c \
-				src/whereami.c
+				src/whereami.c \
+				src/sprinter.c \
+				jpo/sprint.c
 
 OBJ		=	$(SRC:.c=.o)
 

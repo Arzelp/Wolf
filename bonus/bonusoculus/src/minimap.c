@@ -5,7 +5,7 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Fri Dec 18 19:45:34 2015 Paskal Arzel
-** Last update Thu Dec 31 12:58:24 2015 Paskal Arzel
+** Last update Fri Nov 18 14:58:32 2016 Paskal Arzel
 */
 
 #include <stdio.h>
@@ -14,64 +14,10 @@
 #include <math.h>
 #include <lapin.h>
 #include "my.h"
+#include "mini.h"
 
-int	minisquaretp(t_bunny_pixelarray *pix, t_bunny_position *pos)
-{
-  t_color	*color;
-  int	ancx;
-  int	ancy;
-  int	i;
-  int	j;
-
-  if ((color = bunny_malloc(sizeof(t_color))) == NULL)
-    return (1);
-  ancx = pos->x;
-  ancy = pos->y;
-  i = -1;
-  color->full = 0x996611;
-  while (++i < 6)
-    {
-      j = -1;
-      while (++j < 6)
-	{
-	  pos->x = ancx + j;
-	  pos->y = ancy + i;
-	  tekpixel(pix, pos, color);
-	}
-    }
-  bunny_free(color);
-  return (0);
-}
-
-int	minisquareground(t_bunny_pixelarray *pix, t_bunny_position *pos)
-{
-  t_color	*color;
-  int	ancx;
-  int	ancy;
-  int	i;
-  int	j;
-
-  if ((color = bunny_malloc(sizeof(t_color))) == NULL)
-    return (1);
-  ancx = pos->x;
-  color->full = 0x2AEE7A;
-  ancy = pos->y;
-  i = -1;
-  while (++i < 6)
-    {
-      j = -1;
-      while (++j < 6)
-	{
-	  pos->x = ancx + j;
-	  pos->y = ancy + i;
-	  tekpixel(pix, pos, color);
-	}
-    }
-  bunny_free(color);
-  return (0);
-}
-
-int	minisquarewall(t_bunny_pixelarray *pix, t_bunny_position *pos)
+int		minisquare(t_bunny_pixelarray *pix, t_bunny_position *pos,
+			   unsigned int col)
 {
   t_color	*color;
   int	i;
@@ -82,7 +28,7 @@ int	minisquarewall(t_bunny_pixelarray *pix, t_bunny_position *pos)
   if ((color = bunny_malloc(sizeof(t_color))) == NULL)
     return (1);
   i = -1;
-  color->full = 0xCCCCCC;
+  color->full = col;
   ancx = pos->x;
   ancy = pos->y;
   while (++i < 6)
@@ -99,25 +45,33 @@ int	minisquarewall(t_bunny_pixelarray *pix, t_bunny_position *pos)
   return (0);
 }
 
-int	checkup(char nb, t_bunny_pixelarray *pix,
-		t_bunny_position *pos)
+unsigned int	*makecolortab()
 {
-  if (nb == 5)
-    minisquaredrunk(pix, pos);
-  else if (nb == 6)
-    minisquareundrunk(pix, pos);
-  else if (nb == 7)
-    minisquarelight(pix, pos);
-  return (0);
+  unsigned int	*colors;
+
+  if ((colors = malloc(NB_TYPES * sizeof(unsigned int))) == NULL)
+    return (NULL);
+  colors[0] = COLOR_GROUND;
+  colors[1] = COLOR_WALL;
+  colors[2] = COLOR_TP;
+  colors[3] = COLOR_TP;
+  colors[4] = COLOR_TP;
+  colors[5] = COLOR_DRUNK;
+  colors[6] = COLOR_UNDRUNK;
+  colors[7] = COLOR_LIGHT;
+  colors[8] = COLOR_BIGL;
+  return (colors);
 }
 
-int	minimap(t_bunny_pixelarray *pix, t_list *list)
+int		minimap(t_bunny_pixelarray *pix, t_list *list)
 {
   int	i;
   int	j;
+  unsigned int		*colors;
   t_bunny_position	*pos;
 
-  if ((pos = bunny_malloc(sizeof(t_bunny_position))) == NULL)
+  if ((pos = bunny_malloc(sizeof(t_bunny_position))) == NULL ||
+      (colors = makecolortab()) == NULL)
     return (1);
   i = -1;
   while (++i < list->height)
@@ -127,14 +81,10 @@ int	minimap(t_bunny_pixelarray *pix, t_list *list)
 	{
 	  pos->x = (790 - list->width * 6) + 6 * j;
 	  pos->y = 20 + 6 * i;
-	  if ((list->map)[i][j] == 1)
-	    minisquarewall(pix, pos);
-	  else if ((list->map)[i][j] <= 4 && (list->map)[i][j] >= 2)
-	    minisquaretp(pix, pos);
-	  else if ((list->map)[i][j] == 0)
-	    minisquareground(pix, pos);
+	  if (list->map[i][j] >= 0 && list->map[i][j] <= NB_TYPES - 2)
+	    minisquare(pix, pos, colors[(int)list->map[i][j]]);
 	  else
-	    checkup((list->map)[i][j], pix, pos);
+	    minisquare(pix, pos, 0x000000);
 	}
     }
   return (0);

@@ -5,7 +5,7 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Thu Dec 31 12:28:44 2015 Paskal Arzel
-** Last update Sun Jan  3 20:57:20 2016 Paskal Arzel
+** Last update Fri Nov 18 14:51:31 2016 Paskal Arzel
 */
 
 #include <stdio.h>
@@ -17,8 +17,8 @@
 
 int	doit(t_bunny_pixelarray *pix1, t_bunny_pixelarray *pix2, t_list *list)
 {
-  cielsol(pix1);
-  cielsol(pix2);
+  cielsol(pix1, list);
+  cielsol(pix2, list);
   drawit(pix1, list);
   drawit2(pix2, list);
   return (0);

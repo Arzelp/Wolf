@@ -5,14 +5,24 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Sun Dec 13 16:48:02 2015 Paskal Arzel
-** Last update Sun Jan  3 20:20:00 2016 Paskal Arzel
+** Last update Fri Nov 18 14:47:54 2016 Paskal Arzel
 */
 
+
+#ifndef MY_H_
+#define MY_H_
+
 #include "lapin.h"
+
+#define COLOR_SKYNIGHT 0x331100
+#define COLOR_SKYDAY 0xFFCC33
+#define COLOR_GROUNDNIGHT 0x33CC00
+#define COLOR_GROUNDDAY 0x005511
 
 typedef struct s_list
 {
   t_bunny_window	*win;
+  bool			*keysym;
   char			*name;
   char			**map;
   float			posx;
@@ -22,6 +32,8 @@ typedef struct s_list
   float			angle;
   float			light;
   float			view;
+  const bool		*keys;
+  bool			night;
   t_bunny_ini		*ini;
 }t_list;
 
@@ -63,6 +75,7 @@ int	checkcreate(t_list *list, t_bunny_keysym keysym,
 int	minisquarewall(t_bunny_pixelarray *pix, t_bunny_position *pos);
 int	minisquareground(t_bunny_pixelarray *pix, t_bunny_position *pos);
 int	minisquaretp(t_bunny_pixelarray *pix, t_bunny_position *pos);
+void	controls(t_list	*list);
 int	goright(t_list *list, int posx, int posy, float radangle);
 int	checktp(t_list *list);
 int	goup(t_list *list, int posx, int posy, float radangle);
@@ -73,6 +86,7 @@ int	drawit(t_bunny_pixelarray *pix, t_list *list);
 int	lenscope(char *str);
 char	*getscope(char *str);
 int	my_getcnbr(const char *str);
+void	sprinter(t_bunny_pixelarray *pix, t_list *list);
 float	my_getnbrfloat(char *str);
 int	my_getnbr(char *str);
 void	my_putchar(char c);
@@ -93,3 +107,5 @@ void    tekpixel(t_bunny_pixelarray *pix,
 void	go(t_bunny_position *curpos, double angle, t_bunny_position *newpos,
 	   int move);
 int	cielsol(t_bunny_pixelarray *pix);
+
+#endif

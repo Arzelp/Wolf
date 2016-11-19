@@ -5,7 +5,7 @@
 ## Login   <arzel_p@epitech.net>
 ##
 ## Started on  Fri Oct  9 10:24:46 2015 Paskal Arzel
-## Last update Sun Jan  3 21:38:33 2016 Paskal Arzel
+## Last update Tue Feb 16 14:28:52 2016 Paskal Arzel
 ##
 
 NAME		=	wolf3d
@@ -19,7 +19,8 @@ LIB			=	-L/home/arzel_p/.froot/lib -llapin \
 				-ldl -lstdc++ \
 				-lmy -L ./lib/my
 
-FLAG		=	-W -Wall -ansi -pedantic -I/home/arzel_p/.froot/include/
+FLAG		=	-W -Wall -ansi -pedantic -I/home/arzel_p/.froot/include/ \
+				-I./include/ -rdynamic
 SRC			=	src/wolf3d.c \
 				src/my_fill.c \
 				src/my_set_pixel.c \

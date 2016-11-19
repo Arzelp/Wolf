@@ -5,7 +5,7 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Sun Dec 13 15:44:22 2015 Paskal Arzel
-** Last update Sun Jan  3 21:05:13 2016 Paskal Arzel
+** Last update Fri Nov 18 17:57:27 2016 Paskal Arzel
 */
 
 #include <stdio.h>
@@ -14,7 +14,18 @@
 #include <lapin.h>
 #include "my.h"
 
-int	cielsol(t_bunny_pixelarray *pix)
+t_bunny_response	mainresp(t_bunny_event_state state,
+				 t_bunny_keysym keysym,
+				 void *_list)
+{
+  t_list	*list;
+
+  list = (t_list *)_list;
+  list->keys = bunny_get_keyboard();
+  return (GO_ON);
+}
+
+int	cielsol(t_bunny_pixelarray *pix, t_list *list)
 {
   t_color	*color;
   t_bunny_position	*pos;
@@ -25,10 +36,14 @@ int	cielsol(t_bunny_pixelarray *pix)
     return (1);
   if ((pos = bunny_malloc(sizeof(t_bunny_position))) == NULL)
     return (1);
-  color->full = 0x331100;
+  color->full = 0xFFCC33;
+  if (list->night == true)
+    color->full = 0x331100;
   i = -1;
   my_fill(pix, color);
-  color->full = 0x005511;
+  color->full = 0x33CC00;
+  if (list->night == true)
+    color->full = 0x005511;
   while (++i <= 800)
     {
       j = 400;
@@ -92,6 +107,8 @@ t_bunny_response	mainloop(void *_list)
   t_bunny_position	*pos;
 
   list = _list;
+  list->sprinting = false;
+  list->keys = bunny_get_keyboard();
   if ((pos = bunny_malloc(sizeof(t_bunny_position))) == NULL)
     return (1);
   pos->x = 800;
@@ -100,12 +117,15 @@ t_bunny_response	mainloop(void *_list)
     return (1);
   if ((pix2 = bunny_new_pixelarray(800, 800)) == NULL)
     return (1);
+  controls(list);
   doit(pix1, pix2, list);
+  sprinter(pix1, list);
   bunny_blit(&(list->win)->buffer, &pix2->clipable, pos);
   pos->x = 0;
   bunny_blit(&(list->win)->buffer, &pix1->clipable, pos);
   list->light = (list->light > 0) ? list->light - 0.12 : list->light;
   list->view = (list->view > 0) ? list->view - 0.0008 : list->view;
+  list->coke = (list->coke > 1) ? list->coke - 0.005 : 1;
   bunny_display(list->win);
   bunny_delete_clipable(&pix1->clipable);
   bunny_delete_clipable(&pix2->clipable);
@@ -130,6 +150,11 @@ int	main(int ac, char **av)
   if (creatlist(list, win, ini) == 1)
     return (1);
   aff_map(list->map, list);
+  list->keys = bunny_get_keyboard();
+  list->coke = 1;
+  list->night = false;
+  list->cdnight = 0;
+  list->sprint = 100;
   bunny_set_loop_main_function(mainloop);
   bunny_set_key_response(&mainresp);
   bunny_loop(win, 80, list);

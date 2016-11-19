@@ -5,7 +5,7 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Sun Dec 13 16:48:02 2015 Paskal Arzel
-** Last update Wed Dec 16 10:03:14 2015 Paskal Arzel
+** Last update Fri Nov 18 10:30:17 2016 Paskal Arzel
 */
 
 #include "lapin.h"
@@ -20,6 +20,7 @@ typedef struct s_list
   int			height;
   int			width;
   float			angle;
+  const bool		*keys;
   t_bunny_ini		*ini;
 }t_list;
 
