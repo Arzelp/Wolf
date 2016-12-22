@@ -5,7 +5,7 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Sun Dec 13 15:44:22 2015 Paskal Arzel
-** Last update Tue Feb  2 15:33:26 2016 Paskal Arzel
+** Last update Mon Dec 19 11:01:39 2016 Paskal Arzel
 */
 
 #include <stdio.h>
@@ -95,7 +95,7 @@ t_bunny_response	mainloop(void *_list)
     return (1);
   pos->x = -1;
   pos->y = -1;
-  if ((pix = bunny_new_pixelarray(800, 800)) == NULL)
+  if ((pix = bunny_new_pixelarray(WIDTH, HEIGHT)) == NULL)
     return (1);
   cielsol(pix);
   drawit(pix, list);
@@ -118,7 +118,7 @@ int	main(int ac, char **av)
     return (1);
   if ((ini = bunny_load_ini(av[1])) == NULL)
     return (1);
-  if ((win = bunny_start(800, 800, false, "wolf3d")) == NULL)
+  if ((win = bunny_start(WIDTH, HEIGHT, false, "wolf3d")) == NULL)
     return (1);
   if (getmap(av[1], list) == 1)
     return (1);

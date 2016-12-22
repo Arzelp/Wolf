@@ -5,7 +5,7 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Mon Dec 14 19:29:31 2015 Paskal Arzel
-** Last update Mon Jan  4 18:19:02 2016 Paskal Arzel
+** Last update Mon Dec 19 11:06:15 2016 Paskal Arzel
 */
 
 #include <stdio.h>
@@ -86,13 +86,13 @@ int	drawit(t_bunny_pixelarray *pix, t_list *list)
   float	height;
 
   i = -1;
-  radangle = list->angle * M_PI / 180;
+  radangle = list->angle * M_PI / (M_PI / 2.0);
   if ((scrpos = bunny_malloc(sizeof(t_pos))) == NULL)
     return (1);
-  while (++i <= 800.0)
+  while (++i <= WIDTH)
     {
       scrpos->x = 0.5;
-      scrpos->y = (400.0 - i) / 800.0;
+      scrpos->y = ((float)(WIDTH / 2.0) - i) / (float)WIDTH;
       x = scrpos->x * cos(radangle) - scrpos->y * sin(radangle);
       y = scrpos->x * sin(radangle) + scrpos->y * cos(radangle);
       scrpos->x = list->posx + x;

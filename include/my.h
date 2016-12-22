@@ -5,7 +5,7 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Sun Dec 13 16:48:02 2015 Paskal Arzel
-** Last update Fri Nov 18 14:47:54 2016 Paskal Arzel
+** Last update Mon Dec 19 10:59:15 2016 Paskal Arzel
 */
 
 
@@ -18,6 +18,8 @@
 #define COLOR_SKYDAY 0xFFCC33
 #define COLOR_GROUNDNIGHT 0x33CC00
 #define COLOR_GROUNDDAY 0x005511
+#define WIDTH 800
+#define HEIGHT 800
 
 typedef struct s_list
 {
