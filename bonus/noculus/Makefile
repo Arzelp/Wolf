@@ -5,11 +5,11 @@
 ## Login   <arzel_p@epitech.net>
 ##
 ## Started on  Fri Oct  9 10:24:46 2015 Paskal Arzel
-## Last update Thu Dec 22 15:34:47 2016 Paskal Arzel
+## Last update Sat Feb  4 10:04:07 2017 Paskal
 ##
 
 NAME		=	wolf3d
-LIB			=	-L/home/arzel_p/.froot/lib/ -llapin \
+LIB			=	-L/home/$(USER)/.froot/lib/ -llapin \
 				-L/usr/local/lib \
 				-lsfml-audio \
 				-lsfml-graphics \
@@ -19,7 +19,7 @@ LIB			=	-L/home/arzel_p/.froot/lib/ -llapin \
 				-ldl -lstdc++ \
 				-lmy -L ./lib/my
 
-FLAG		=	-I./include/ -W -Wall -ansi -pedantic -I/home/arzel_p/.froot/include -g
+FLAG		=	-I./include/ -W -Wall -ansi -pedantic -I/home/$(USER)/.froot/include -g
 
 SPR			=	src/sprite/
 

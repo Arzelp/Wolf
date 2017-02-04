@@ -5,11 +5,11 @@
 ## Login   <arzel_p@epitech.net>
 ##
 ## Started on  Fri Oct  9 10:24:46 2015 Paskal Arzel
-## Last update Tue Feb 16 14:28:52 2016 Paskal Arzel
+## Last update Sat Feb  4 10:00:26 2017 Paskal
 ##
 
 NAME		=	wolf3d
-LIB			=	-L/home/arzel_p/.froot/lib -llapin \
+LIB			=	-L/home/paskal/.froot/lib -llapin \
 				-L/usr/local/lib \
 				-lsfml-audio \
 				-lsfml-graphics \
@@ -19,7 +19,7 @@ LIB			=	-L/home/arzel_p/.froot/lib -llapin \
 				-ldl -lstdc++ \
 				-lmy -L ./lib/my
 
-FLAG		=	-W -Wall -ansi -pedantic -I/home/arzel_p/.froot/include/ \
+FLAG		=	-W -Wall -ansi -pedantic -I/home/paskal/.froot/include/ \
 				-I./include/ -rdynamic
 SRC			=	src/wolf3d.c \
 				src/my_fill.c \
@@ -41,7 +41,7 @@ OBJ		=	$(SRC:.c=.o)
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-		gcc $(OBJ) $(LIB) -o $(NAME)
+		gcc $(FLAG) $(OBJ) $(LIB) -o $(NAME)
 
 clean:
 		rm -f $(OBJ)

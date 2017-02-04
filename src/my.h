@@ -5,10 +5,17 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Sun Dec 13 16:48:02 2015 Paskal Arzel
-** Last update Sun Jan  3 20:20:00 2016 Paskal Arzel
+** Last update Sat Feb  4 10:01:40 2017 Paskal Arzel
 */
 
 #include "lapin.h"
+
+#define COLOR_SKYNIGHT 0x331100
+#define COLOR_SKYDAY 0xFFCC33
+#define COLOR_GROUNDNIGHT 0x33CC00
+#define COLOR_GROUNDDAY 0x005511
+#define WIDTH 800
+#define HEIGHT 800
 
 typedef struct s_list
 {
