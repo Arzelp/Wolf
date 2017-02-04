@@ -5,7 +5,7 @@
 ** Login   <arzel_p@epitech.eu>
 **
 ** Started on  Tue Dec 15 22:34:28 2015 Paskal Arzel
-** Last update Mon Jan  4 18:18:42 2016 Paskal Arzel
+** Last update Sat Feb  4 10:09:29 2017 Paskal Arzel
 */
 
 #include <stdio.h>
@@ -112,9 +112,9 @@ t_bunny_response	mainresp(t_bunny_event_state state,
   if (keysym == BKS_ESCAPE && state == GO_DOWN)
     return (EXIT_ON_SUCCESS);
   if (keysym == BKS_E && state == GO_DOWN)
-    list->angle -= 2.4;
+    list->angle -= 0.02;
   else if (keysym == BKS_A && state == GO_DOWN)
-    list->angle += 2.4;
+    list->angle += 0.02;
   else
     updown(list, keysym, state, radangle);
   return (GO_ON);
